@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Docker Playground</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Docker Playground</h1>
+      <p class="subtitle">A tiny app to learn Docker with.</p>
+
+      <section class="card">
+        <h2>Add an item</h2>
+        <form id="add-form">
+          <input
+            id="name-input"
+            type="text"
+            placeholder="e.g. banana"
+            required
+          />
+          <button type="submit">Add</button>
+        </form>
+        <p id="form-msg" class="msg"></p>
+      </section>
+
+      <section class="card">
+        <h2>Items</h2>
+        <button id="refresh-btn">Refresh</button>
+        <ul id="items-list"></ul>
+      </section>
+
+      <section class="card">
+        <h2>Backend health</h2>
+        <button id="health-btn">Check /health</button>
+        <pre id="health-output"></pre>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
