@@ -1,0 +1,44 @@
+services: 
+  frontend:
+    build:
+      context: .
+      dockerfile: ./frontend/Dockerfile
+    ports:
+      - "8080:80"
+
+  backend:
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile
+    environment:
+      MONGO_URL: "mongodb://mongo:27017"
+    ports:
+      - "3000:3000"
+    depends_on:
+#     - mongo
+      mongo:
+        condition: service_healthy
+
+  mongo:
+    image: mongo:latest
+    volumes:
+      - local:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  mongo-express:
+    image: mongo-express:latest
+    environment:
+      ME_CONFIG_MONGODB_SERVER: "mongo"
+    ports:
+      - "8081:8081"
+    depends_on:
+#     - mongo
+      mongo:
+        condition: service_healthy
+
+volumes:
+  local:
