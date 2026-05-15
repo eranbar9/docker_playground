@@ -1,7 +1,7 @@
 {
   "name": "docker-playground-app",
   "version": "1.0.0",
-  "description": "Tiny Express + MongoDB app for learning Docker",
+  "description": "Express + MongoDB app for Docker",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
