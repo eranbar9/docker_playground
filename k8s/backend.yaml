@@ -26,6 +26,11 @@ spec:
             configMapKeyRef:
               name: backend-cm
               key: MONGO_URL
+        - name: BACKEND_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: backend-secret
+              key: BACKEND_SECRET
 ---
 apiVersion: v1
 kind: Service
