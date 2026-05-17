@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: docker-playground:frontend
+        image: eranbar9/docker-playground:frontend
         ports:
         - containerPort: 80
