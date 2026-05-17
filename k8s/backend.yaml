@@ -21,7 +21,11 @@ spec:
         - containerPort: 3000
         env:
         - name: MONGO_URL
-          value: "mongodb://mongo-service:27017"
+#         value: "mongodb://mongo-service:27017"
+          valueFrom:
+            configMapKeyRef:
+              name: backend-cm
+              key: MONGO_URL
 ---
 apiVersion: v1
 kind: Service
