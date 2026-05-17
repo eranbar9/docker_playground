@@ -5,7 +5,7 @@ metadata:
   labels:
     app: mongo
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: mongo
@@ -17,3 +17,25 @@ spec:
       containers:
       - name: mongo
         image: mongo:latest
+        ports:
+        - containerPort: 27017
+        volumeMounts:
+          - name: local
+            mountPath: /data/db
+      volumes:
+        - name: local
+          persistentVolumeClaim:
+            claimName: file-system-claim
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-service
+spec:
+  type: ClusterIP
+  selector:
+    app: mongo
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
