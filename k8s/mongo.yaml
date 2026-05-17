@@ -20,10 +20,10 @@ spec:
         ports:
         - containerPort: 27017
         volumeMounts:
-          - name: local
+          - name: mongo-data
             mountPath: /data/db
       volumes:
-        - name: local
+        - name: mongo-data
           persistentVolumeClaim:
             claimName: file-system-claim
 ---
